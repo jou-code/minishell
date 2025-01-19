@@ -7,7 +7,7 @@ char	*strtrim_space(char *s1)
 	int		end;
 	int		i;
 
-	if(!s1)
+	if (!s1)
 		return (NULL);
 	i = 0;
 	start = 0;
@@ -16,7 +16,7 @@ char	*strtrim_space(char *s1)
 		start++;
 	while (end > start && s1[end] == ' ')
 		end--;
-	trim = (char *) malloc((end - start + 2) * sizeof(char));
+	trim = (char *)malloc((end - start + 2) * sizeof(char));
 	if (!trim)
 		return (NULL);
 	while (start <= end)
@@ -26,17 +26,16 @@ char	*strtrim_space(char *s1)
 		start++;
 	}
 	trim[i] = '\0';
-	// free(s1);
 	return (trim);
 }
 
 char	*substr_by_address(char *str, int len)
 {
-	int	i;
+	int		i;
 	char	*substr;
 
 	i = 0;
-	substr = malloc ((len + 1) * sizeof(char));
+	substr = malloc((len + 1) * sizeof(char));
 	if (!substr)
 		return (NULL);
 	while (i < len)

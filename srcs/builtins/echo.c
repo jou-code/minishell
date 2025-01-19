@@ -2,9 +2,10 @@
 
 int	ft_echo(char **arg)
 {
-	int	n = 0;
+	int	n;
 	int	i;
 
+	n = 0;
 	if (arg && arg[0] && ft_strncmp(arg[0], "-n", 2) == 0)
 	{
 		n = 2;

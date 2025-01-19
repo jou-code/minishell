@@ -20,9 +20,9 @@ int	is_metachar(char c)
 	return (is_operator(c) || is_space(c));
 }
 
-/* returns if is a valid name for an enviroment variable ([a-z], [A-Z], '_', [0-9]) */
+/* returns if is a valid name for an enviroment variable ([a-z], [A-Z], '_',
+		[0-9]) */
 int	is_name(char c)
 {
 	return ((c == '_') || ft_isalnum(c));
 }
-

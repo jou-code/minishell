@@ -6,7 +6,7 @@
 /*   By: tsoares- <tsoares-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:12:01 by tsoares-          #+#    #+#             */
-/*   Updated: 2024/12/15 23:55:10 by jgils            ###   ########.fr       */
+/*   Updated: 2025/01/19 17:48:21 by jgils            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,89 +16,86 @@
  ** Converts the token linked list into a array of strings (char **) 
  */
 
-char    **list_to_char_array(t_node *token)
+char	**list_to_char_array(t_node *token)
 {
-    int     count;
-    int     i;
-    char    **args;
-    t_node  *arg_token;
+	int		count;
+	int		i;
+	char	**args;
+	t_node	*arg_token;
 
-    count = 0;
-    i = 0;
-    arg_token = token;
-    while(arg_token && arg_token->type == ARG)
+	count = 0;
+	i = 0;
+	arg_token = token;
+	while (arg_token && arg_token->type == ARG)
 	{
 		count++;
 		arg_token = arg_token->next;
 	}
-	args = (char **)malloc(sizeof(char *) * (count + 1)); // criar um array de strings para passar para o ft_echo
+	args = (char **)malloc(sizeof(char *) * (count + 1));
 	if (!args)
 	{
 		perror("Error: memory allocation failure!\n");
 		return (0);
 	}
-	arg_token = token; // voltar p/o 1º argumento e depois copiar os args p/o array
+	arg_token = token;
 	i = 0;
-	while (arg_token && arg_token->type == ARG) // preencher o array de argumentos;
+	while (arg_token && arg_token->type == ARG)
 	{
 		if (!arg_token->value)
 		{
-			free(args); // se der erro, dar free
+			free(args);
 			return (0);
 		}
-		args[i++] = arg_token->value; // copiar o valor do token p/o array de args
+		args[i++] = arg_token->value;
 		arg_token = arg_token->next;
 	}
 	args[i] = NULL;
-    return (args);
+	return (args);
 }
 
-// test
-char    **get_args_array(t_list *cmdlist)
+char	**get_args_array(t_list *cmdlist)
 {
-    int     count;
-    int     i;
-    char    **args;
-    t_node  *token;
+	int		count;
+	int		i;
+	char	**args;
+	t_node	*token;
 
-    count = 0;
-    token = cmdlist->head;
-    while(token)
-    {
-	    if(token->type == ARG)
-		    count++;
-	    token = token->next;
-    }
-    args = (char **)malloc(sizeof(char *) * (count + 1)); // criar um array de strings para passar para o ft_echo
-    if (!args)
-    {
-	    perror("Error: memory allocation failure!\n");
-	    return (0);
-    }
-    token = cmdlist->head; // voltar p/o 1º argumento e depois copiar os args p/o array
-    i = 0;
-    while(token)
-    {
-	    if(token->type == ARG)
-	    {
-		    args[i++] = ft_strdup(token->value); // copiar o valor do token p/o array de args
-	    }
-	    token = token->next;
-    }
-    args[i] = NULL;
-    return (args);
+	count = 0;
+	token = cmdlist->head;
+	while (token)
+	{
+		if (token->type == ARG)
+			count++;
+		token = token->next;
+	}
+	args = (char **)malloc(sizeof(char *) * (count + 1));
+	if (!args)
+	{
+		perror("Error: memory allocation failure!\n");
+		return (0);
+	}
+	token = cmdlist->head;
+	i = 0;
+	while (token)
+	{
+		if (token->type == ARG)
+			args[i++] = ft_strdup(token->value);
+		token = token->next;
+	}
+	args[i] = NULL;
+	return (args);
 }
 
-// test
 char	**env_to_char_array(t_env *envp)
 {
-	int	count = 0;
+	int			count;
 	t_envnode	*node;
-	char **array;
-	
+	char		**array;
+
+	count = 0;
 	if (!envp || !envp->head)
 		return (NULL);
-	array = malloc((envp->len + 1) * sizeof (char *));
+	array = malloc((envp->len + 1) * sizeof(char *));
 	node = envp->head;
 	while (node != NULL)
 	{

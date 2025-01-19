@@ -2,9 +2,10 @@
 
 int	ft_unset(char **args, t_env *env)
 {
-	int	count = 0;
+	int			count;
 	t_envnode	*node;
-	
+
+	count = 0;
 	while (args && args[count] != NULL)
 	{
 		node = search_key(env, args[count]);

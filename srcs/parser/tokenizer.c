@@ -39,7 +39,7 @@ void	identify_tokens(t_tab *cmdtable)
 {
 	t_list	*cmdline;
 	t_node	*token;
-	
+
 	cmdline = cmdtable->head;
 	token = cmdline->head;
 	while (cmdline != NULL && token != NULL)
@@ -59,10 +59,11 @@ void	identify_tokens(t_tab *cmdtable)
 
 t_tab	*init_cmdtab(char **input)
 {
-	int	i = 0;
+	int		i;
 	t_list	*list;
 	t_tab	*cmdtable;
 
+	i = 0;
 	if (!input)
 		return (NULL);
 	list = new_list(&input[i]);
@@ -81,10 +82,11 @@ t_tab	*init_cmdtab(char **input)
 
 t_tab	*get_cmdtable(char **input, t_env *env)
 {
-	int	i = 0;
+	int		i;
 	t_list	*list;
 	t_tab	*cmdtable;
 
+	i = 0;
 	cmdtable = init_cmdtab(input);
 	if (!cmdtable)
 		return (NULL);

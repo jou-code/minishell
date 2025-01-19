@@ -3,16 +3,12 @@
 void	free_main(t_main *main)
 {
 	free_split(main->envp);
-	// main->envp = NULL;
 	free_env(main->envp_list);
-	// main->envp_list = NULL;
 	free_table(main->cmdtab);
-	// main->cmdtab = NULL;
 	free(main);
-	// main = NULL;
 }
 
-void	free_envnode(t_envnode	*node)
+void	free_envnode(t_envnode *node)
 {
 	free(node->key);
 	free(node->value);
@@ -40,7 +36,7 @@ void	free_table(t_tab *cmdtable)
 	t_list	*keepline;
 	t_node	*token;
 	t_node	*keeptoken;
-	
+
 	cmdline = cmdtable->head;
 	token = cmdline->head;
 	while (cmdline != NULL && token != NULL)
@@ -68,7 +64,7 @@ void	free_list(t_list *cmdline)
 	t_list	*tmpline;
 	t_node	*token;
 	t_node	*tmptoken;
-	
+
 	token = cmdline->head;
 	while (cmdline != NULL && token != NULL)
 	{
@@ -93,7 +89,7 @@ int	free_env(t_env *env)
 {
 	t_envnode	*node;
 	t_envnode	*temp;
-	
+
 	if (!env || !env->head)
 		return (1);
 	node = env->head;
